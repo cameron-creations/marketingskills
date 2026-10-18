@@ -142,6 +142,7 @@ Anyone — including tool makers and partners — may contribute content that na
 | composio | Integration Layer | ✓ | ✓ | ✓ | ✓ | [composio.md](integrations/composio.md) |
 | cogny | Integration Layer | - | ✓ | - | - | [cogny.md](integrations/cogny.md) |
 | glasser | Integration Layer | ✓ | ✓ | ✓ | - | [glasser.md](integrations/glasser.md) |
+| numberbroom | Phone Verification | ✓ | ✓ | - | - | [numberbroom.md](integrations/numberbroom.md) |
 
 ---
 
@@ -365,6 +366,14 @@ Pre-outreach email deliverability validation.
 | **truelist** | Bulk + single email verification, catch-all resolution | Returns `email_state` (ok / email_invalid / accept_all / risky / unknown) + `email_sub_state`. Batches with webhook + CSV results, `enhanced` strategy for catch-alls. Hosted OAuth MCP, CLI, 7-language SDKs. |
 
 **Agent recommendation**: Truelist for any prospect list before outreach — Apollo/ZoomInfo/Hunter data accuracy is typically 60–80%, validation is non-negotiable to keep sender reputation healthy.
+
+### Phone Verification
+
+US phone number validation before outbound calling or texting.
+
+| Tool | Best For | Notes |
+|------|----------|-------|
+| **numberbroom** | Line type, carrier, activity score and a TCPA litigator flag, per number or per list | Written by NumberBroom's maker (disclosed in the guide). US numbers only. $0.20 a verification. For line type alone, a carrier lookup from a messaging platform such as Twilio's ([twilio](integrations/twilio.md)) costs less |
 
 ### Developer Intent / GitHub
 
@@ -652,6 +661,16 @@ Use Cogny when you only need marketing channels and want to avoid running your o
 - **Pricing**: per call at the price each endpoint publishes; no subscription
 
 Use Glasser for occasional lookups across several paid vendors when no accounts are set up. Prefer a vendor's own API when you already hold its key, and Google Search Console for your own site's search data.
+
+### NumberBroom Integration
+
+[NumberBroom](integrations/numberbroom.md) verifies US phone numbers: line type, carrier, an activity score with a likely-disconnected flag, and a TCPA litigator flag, per number through a REST API or MCP server, or per list through a paid scrub. Written by NumberBroom's maker; see the disclosure in the guide.
+
+- **Setup**: an API key from numberbroom.com/settings, or MCP at `https://numberbroom.com/mcp` (Bearer key or OAuth sign-in)
+- **Coverage**: US numbers only. A single lookup does not check do-not-call registries
+- **Pricing**: $0.20 per single verification with a $10 minimum top-up; list scrubs are priced per list and paid by card; no subscription
+
+Use NumberBroom when you want the litigator flag and activity score alongside line type. For line type alone, a carrier lookup from a messaging platform costs less ([twilio](integrations/twilio.md)).
 
 ---
 
